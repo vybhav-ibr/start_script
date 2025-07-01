@@ -2,7 +2,9 @@
 set -e
 set -o pipefail
 
-deactivate
+if [[ -n "$VIRTUAL_ENV" ]]; then
+  deactivate
+fi
 apt-get update -y
 sudo apt-get install -y build-essential software-properties-common curl git git-lfs locales python3-venv python3-pip
 
