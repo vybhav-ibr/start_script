@@ -2,6 +2,7 @@
 set -e
 set -o pipefail
 
+source /venv/main/bin/activate 
 if [[ -n "$VIRTUAL_ENV" ]]; then
   deactivate
 fi
