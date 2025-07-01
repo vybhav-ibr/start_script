@@ -2,6 +2,7 @@
 set -e
 set -o pipefail
 
+deactivate
 apt-get update -y
 sudo apt-get install -y build-essential software-properties-common curl git git-lfs locales python3-venv python3-pip
 
@@ -31,14 +32,17 @@ sudo apt-get install -y \
   ros-jazzy-ros2-control \
   ros-jazzy-ros2-controllers \
   ros-jazzy-joint-state-publisher \
-
+  
 git clone https://github.com/isaac-sim/IsaacSim.git isaacsim
 cd isaacsim
+python3 -m venv isaac_venv
+source isaac_venv/bin/activate
 git lfs install
 git lfs pull
 ./build.sh
 cd ..
 
+deactivate
 git clone https://github.com/huggingface/lerobot.git
 cd lerobot
 python3 -m venv lerobot_venv
